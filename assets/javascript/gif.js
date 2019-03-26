@@ -4,7 +4,7 @@ var queryURL;
 function displayGifs(){
     
      gifs = $(this).attr("data-name");
-     queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gifs + "api_key=8b0LeUGaPodQPOpR08scJuSmwZULUz0z&q=&limit=10&offset=0&rating=G&lang=en"
+     queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gifs + "api_key=8b0LeUGaPodQPOpR08scJuSmwZULUz0z&limit=10&offset=0&rating=G&lang=en"
 
      .ajax({
         url: queryURL,
@@ -29,3 +29,17 @@ function generateButtons(){
 };
 
 generateButtons();
+
+$(".gifs").on("click", function(){
+    event.preventDefault();
+   var gifs = $(this).attr("data-name");
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gifs + "api_key=8b0LeUGaPodQPOpR08scJuSmwZULUz0z&limit=10&offset=0&rating=G&lang=en"
+
+     .ajax({
+        url: queryURL,
+        method: "GET"
+      })
+      .then(function(response) {
+          console.log(response);
+         results = response.data;
+})})

@@ -37,7 +37,7 @@ generateButtons();
 
 
 
-$(".gifs").on("click", function () {
+$(document).on("click", ".gifs", function () {
     event.preventDefault();
     var gifs = $(this).attr("data-name");
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gifs + "&api_key=8b0LeUGaPodQPOpR08scJuSmwZULUz0z&limit=10&offset=0&rating=G&lang=en"
@@ -95,7 +95,7 @@ $(".gifs").on("click", function () {
             //  gifDiv.append(ratingDisplay);
             //  $("#gifDisplay").prepend(gifDiv);
             // }
-        })
+        });
         
         
         $("#submitButton").on("click", function(){
@@ -113,18 +113,20 @@ $(".gifs").on("click", function () {
 
 
 
-$("#gifDisplay").on("click", function () {
+$(document).on("click", ".gif-animate", function () {
 
-    var state = $(this).children().attr("data-state");
+    var state = $(this).attr("data-state");
+
+    console.log(state);
 
     if (state === "still") {
-        $(this).children().attr("src", $(this).children().attr("data-animate"));
-        $(this).children().attr("data-state", "animate");
+        $(this).attr("src", $(this).attr("data-animate"));
+        $(this).attr("data-state", "animate");
     }
 
     else {
-        $(this).children().attr("src", $("").attr("data-still"));
-        $(this).children().attr("data-state", "still");
+        $(this).attr("src", $(this).attr("data-still"));
+        $(this).attr("data-state", "still");
     }
 
 });

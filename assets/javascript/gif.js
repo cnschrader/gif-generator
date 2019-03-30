@@ -4,24 +4,25 @@ var gifDisplay = $("#gifDisplay");
 // var gifs;
 // var queryURL;
 // function displayGifs(){
-    
-    //      gifs = $(this).attr("data-name");
-    //      queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gifs + "api_key=8b0LeUGaPodQPOpR08scJuSmwZULUz0z&limit=10&offset=0&rating=G&lang=en"
-    
-    //      .ajax({
-        //         url: queryURL,
-        //         method: "GET"
-        //       })
-        //       .then(function(response) {
-            //           console.log(response);
-            //          results = response.data;
+
+//      gifs = $(this).attr("data-name");
+//      queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gifs + "api_key=8b0LeUGaPodQPOpR08scJuSmwZULUz0z&limit=10&offset=0&rating=G&lang=en"
+
+//      .ajax({
+//         url: queryURL,
+//         method: "GET"
+//       })
+//       .then(function(response) {
+//           console.log(response);
+//          results = response.data;
 //       });
 // };
 
-function generateButtons(){
+function generateButtons() {
     
+    $("#buttonDisplay").empty();
     
-    for(var i = 0; i < topics.length; i++){
+    for (var i = 0; i < topics.length; i++) {
         var newButton = $("<button>");
         newButton.addClass("gifs");
         newButton.attr("data-name", topics[i]);
@@ -34,7 +35,9 @@ function generateButtons(){
 
 generateButtons();
 
-$(".gifs").on("click", function(){
+
+
+$(".gifs").on("click", function () {
     event.preventDefault();
     var gifs = $(this).attr("data-name");
     var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + gifs + "&api_key=8b0LeUGaPodQPOpR08scJuSmwZULUz0z&limit=10&offset=0&rating=G&lang=en"
@@ -43,13 +46,13 @@ $(".gifs").on("click", function(){
         url: queryURL,
         method: "GET"
     })
-    .then(function(response) {
+    .then(function (response) {
         console.log(response);
         results = response.data;
         
         
         
-        for(var i = 0; i < results.length; i++){
+        for (var i = 0; i < results.length; i++) {
             gifDiv = $("<div>");
             var rating = results[i].rating;
             ratingDisplay = $("<p>").text("rating:" + rating);
@@ -63,8 +66,11 @@ $(".gifs").on("click", function(){
             gifDiv.append(ratingDisplay);
             $("#gifDisplay").prepend(gifDiv);
         }
-        //  for(var i = 0; i < results.length; i++){
-            
+        
+        
+    });
+    //  for(var i = 0; i < results.length; i++){
+        
         //  var rating = results[i].rating;
         //  ratingDisplay = $("<p>").text("rating:" + rating);
         //  gifImage = $("<img>");
@@ -89,25 +95,42 @@ $(".gifs").on("click", function(){
             //  gifDiv.append(ratingDisplay);
             //  $("#gifDisplay").prepend(gifDiv);
             // }
-        })})
+        })
         
         
+        $("#submitButton").on("click", function(){
         
+            event.preventDefault();
         
+            userInput = $("#inlineFormInputName2").val().trim();
+          
+            topics.push(userInput);
         
-        $("#gifDisplay").on("click", function(){
+            console.log(topics);
         
-            var state = $(this).children().attr("data-state");
-            
-            if (state === "still") {
-                $(this).children().attr("src", $(this).children().attr("data-animate"));
-                $(this).children().attr("data-state", "animate");
-              } 
-              
-              else {
-                $(this).children().attr("src", $("").attr("data-still"));
-                $(this).children().attr("data-state", "still");
-              }
-        
-        
+            generateButtons();
         });
+
+
+
+$("#gifDisplay").on("click", function () {
+
+    var state = $(this).children().attr("data-state");
+
+    if (state === "still") {
+        $(this).children().attr("src", $(this).children().attr("data-animate"));
+        $(this).children().attr("data-state", "animate");
+    }
+
+    else {
+        $(this).children().attr("src", $("").attr("data-still"));
+        $(this).children().attr("data-state", "still");
+    }
+
+});
+
+
+
+
+
+

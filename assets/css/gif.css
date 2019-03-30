@@ -1,11 +1,21 @@
-img {
-    margin: 10px;
-}
-
-#gifDisplay {
+.gif-animate {
     display: inline;
 }
 
-button {
+
+.gifs {
+    margin: 6px 6px 6px 10px;
+    
+}
+
+form {
+    padding: 10px;
+    /* margin-left: 450px; */
+}
+
+.gifmargin {
     margin: 10px;
 }
+
+
+
